@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="utf-8"/>
+    <title>week6 assignment</title>
+    <style>
+         body{
+            margin-top: 0px;
+            margin-left: 0px;
+            margin-right: 0px;
+            }
+        .top{
+            display: flex;
+            width: 100%;
+            height: 200px;
+            background-color:#384269 ;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .toptext{
+            flex:none;
+            text-align: center;
+            justify-content: center;
+            justify-items: center;
+            font-size: 30px;
+            color: white;
+        }
+        .main{
+            justify-content: center;
+            justify-items: center;
+            align-items: center;
+        }
+        .h1{
+            text-align: center;
+        
+        }
+        .account{
+        
+            margin: auto;
+            width: 300px;
+            text-align: center;
+            align-items: center;
+            justify-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+        .button{
+            margin-top: 10px;
+            text-align: center;
+            justify-content: center;
+            justify-items: center;
+            align-items: center;
+        }
+        .second{
+            margin-top: 30px;
+            justify-content: center;
+            justify-items: center;
+            align-items: center;
+        }
+        .h2{
+            text-align: center;
+        }
+        .login{
+            margin: auto;
+            width: 300px;
+            text-align: center;
+            align-items: center;
+            justify-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+        .button1{
+            margin-top: 10px;
+            text-align: center;
+            justify-content: center;
+            justify-items: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="top">
+        <div class="toptext">歡迎光臨，請註冊登入系統</div>
+    </div>
+    <div class="main">
+        <h3 class="h1">註冊帳號</h3>
+        <form action="/signup" method="POST">
+            <div class="account">
+                    姓名 <input type="text" name="name">
+                    <br/>
+                    帳號  <input type="text" name="username"> 
+                    <br/>   
+                    密碼  <input type="text" name="password">
+                    <br/>
+                    <button class="button">註冊</button>                      
+            </div>
+        </form>
+    </div>
+    <br/>
+    <hr/>
+    <div class="second">
+        <h3 class="h2">登入系統</h3>
+        <form action="/signin" method="POST">
+            <div class="login">
+                    帳號  <input type="text" name="username"> 
+                    <br/>   
+                    密碼  <input type="text" name="password">
+                    <br/>
+                    <button class="button">登入</button> 
+            </div>
+        </form>
+
+    </div>
+</body>
+</html>
