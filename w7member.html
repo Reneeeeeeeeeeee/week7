@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="utf-8"/>
+    <title>week6 assignment</title>
+    <style>
+                body{
+            margin-left: 0px;
+            margin-right: 0px;
+            }
+        .top{
+            display: flex;
+            width: 100%;
+            height: 200px;
+            background-color:#384269 ;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .toptext{
+            flex:none;
+            text-align: center;
+            justify-content: center;
+            justify-items: center;
+            font-size: 30px;
+            color: white;
+        }
+        .main{
+            justify-content: center;
+            justify-items: center;
+            align-items: center;
+        }
+        .h1{
+            text-align: center;
+        
+        }
+        .out{
+            align-items: center;
+            justify-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .signout{
+            text-align: center;
+        
+        }
+        .result{
+            text-align: center;
+        }
+        .change{
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <form action="/member">
+        <div class="top">
+            <div class="toptext">歡迎光臨，這是會員頁</div>
+        </div>
+        <div class="main">
+            <h2 class="h1">{{uname}}，歡迎登入系統</h2>
+        </div>
+        <div class="out">
+            <a href="/signout" class="signout">登出系統</a>
+        </div>
+    </form>
+    <br/>
+    <hr/>
+    <form action="/member" id="form">
+        <div class="result">
+            <h2 class="h2">查詢會員姓名</h2>
+            <input type="text" name="name">
+            <button type=submit, class="button">查詢</button>
+            <br/>
+            <h3 class="h3", id="text">
+        </div>
+    </form>
+    <br/>
+    <form action="/member" id="form2">
+        <div class="change">
+            <h2 class="h4">更新我的姓名</h2>
+            <input type="text" name="update">
+            <button type=submit, class="button1">更新</button>
+            <br/>
+            <h3 class="h4", id="text2"></h3>
+        </div>
+    </form>
+
+    <script>
+        
+        const form= document.getElementById('form');
+        form.addEventListener('submit', event =>{
+            event.preventDefault();
+            const formData= new FormData(form)
+            var url= new URL('http://127.0.0.1:3000/api/member'),
+            params= {name:String(formData.get('name'))}
+            Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
+            console.log(url)
+            async function present(){
+                const response= await fetch(url);
+                const data= await response.json();
+                const {name} = data
+            if (data['data'] !='null')
+                document.getElementById('text').textContent= data['data'].name;
+            else
+                document.getElementById('text').textContent= "無此會員"
+            console.log(data['data'].name);
+            console.log(data);
+            }
+            present();
+        })
+
+        const form2=document.getElementById('form2');
+        form2.addEventListener('submit', event=>{
+            event.preventDefault();
+            const formData=new FormData(form2) 
+            const body={'name': (formData.get('update'))}
+            const url="http://127.0.0.1:3000/api/member"
+            fetch(url, {
+                    method: 'PATCH',
+                    credentials:'include',
+                    headers:{
+                        "content-type":"application/json"
+                    },
+                    body: JSON.stringify(body),
+                }).then(res=> res.json())
+                .catch(error =>
+                console.error('error',error))  
+                .then(response=>
+                console.log('success',response));
+                    if (response=> console.log('success',response))
+                        document.getElementById('text2').textContent="success";
+
+            }
+        
+        )
+    </script>
+</body>
+</html>
